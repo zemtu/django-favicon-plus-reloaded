@@ -12,8 +12,8 @@ admin.site.register(Favicon, FaviconAdmin)
 class FaviconImgAdmin(admin.ModelAdmin):
     list_display = ('faviconFK', 'rel', 'size', 'faviconImage')
 
-    def queryset(self, request):
-        qs = super(FaviconImgAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        qs = super(FaviconImgAdmin, self).get_queryset(request)
         isFavicon = Favicon.objects.filter(isFavicon=True)
         if not len(isFavicon) == 1:
             for n in Favicon.objects.all():
